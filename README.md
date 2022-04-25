@@ -17,3 +17,4 @@ yarn install
 ## Some useful commands
 1. npm run watch - compile css and js as defined in webpack.mix.js. Auto-compiles files everytime there is a change in css or js files
 2. npx cypress open - open cypress testing tool
+3. php artisan test - run all phpunit tests
