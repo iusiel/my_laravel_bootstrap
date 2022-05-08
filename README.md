@@ -12,6 +12,7 @@ composer install
 yarn install
 ```
 1. Create .env file by copying .env.example
+1. Run `php artisan key:generate` to create application key on .env.
 1. Run `php artisan serve` to check if laravel installation is working properly. 
 
 ## Some useful commands
