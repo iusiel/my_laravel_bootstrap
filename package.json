@@ -7,14 +7,17 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "prettier": "prettier --write ."
     },
     "devDependencies": {
+        "@prettier/plugin-php": "^0.18.7",
         "axios": "^0.25",
         "cypress": "^9.5.4",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
+        "prettier": "^2.6.2",
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.50.1",
         "sass-loader": "^12.1.0",
