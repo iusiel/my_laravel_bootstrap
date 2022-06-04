@@ -6,16 +6,20 @@
 4. Cypress 9.5.4
 
 ## Setup
+
 1. Run composer install and yarn install inside the project root.
+
 ```
 composer install
 yarn install
 ```
+
 1. Create .env file by copying .env.example
 1. Run `php artisan key:generate` to create application key on .env.
-1. Run `php artisan serve` to check if laravel installation is working properly. 
+1. Run `php artisan serve` to check if laravel installation is working properly.
 
 ## Some useful commands
+
 1. npm run watch - compile css and js as defined in webpack.mix.js. Auto-compiles files everytime there is a change in css or js files
 2. npx cypress open - open cypress testing tool
 3. php artisan test - run all phpunit tests
