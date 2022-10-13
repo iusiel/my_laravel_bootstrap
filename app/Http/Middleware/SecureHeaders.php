@@ -27,9 +27,9 @@ class SecureHeaders
         $response->header("X-Permitted-Cross-Domain-Policies", "none");
         $response->header("Referrer-Policy", "same-origin");
         $response->header("Clear-Site-Data", '"cache","cookies"');
-        $response->header("Cross-Origin-Embedder-Policy", "require-corp");
-        $response->header("Cross-Origin-Opener-Policy", "same-origin");
-        $response->header("Cross-Origin-Resource-Policy", "same-origin");
+        // $response->header("Cross-Origin-Embedder-Policy", "require-corp");
+        // $response->header("Cross-Origin-Opener-Policy", "same-origin");
+        // $response->header("Cross-Origin-Resource-Policy", "same-origin");
         $response->header(
             "Cache-Control",
             "private, max-age=604800, must-revalidate"
@@ -40,10 +40,36 @@ class SecureHeaders
         );
         $response->header(
             "Content-Security-Policy",
-            "default-src 'self'; script-src 'self' "
+            $this->generateCSP()
+            // "default-src 'self'; script-src 'self' 127.0.0.1:5173; style-src 'self' 'nonce-" .
+            //     config("csp.nonce") .
+            //     "' 127.0.0.1:5173;"
         );
 
         return $response;
-        return $next($request);
+    }
+
+    private function generateCSP()
+    {
+        $csp = [];
+
+        $defaultSrc = ["'self'"];
+        $csp[] = "default-src " . implode(" ", $defaultSrc);
+
+        $scriptSrc = [
+            "'self'",
+            "'strict-dynamic'",
+            "'nonce-" . config("csp.nonce") . "'",
+            "127.0.0.1:5173",
+        ];
+        $csp[] = "script-src " . implode(" ", $scriptSrc);
+
+        $styleSrc = ["'self'", "'unsafe-inline'", "127.0.0.1:5173"];
+        $csp[] = "style-src " . implode(" ", $styleSrc);
+
+        $coonectSrc = ["'self'", "ws:"];
+        $csp[] = "connect-src " . implode(" ", $coonectSrc);
+
+        return implode("; ", $csp);
     }
 }
