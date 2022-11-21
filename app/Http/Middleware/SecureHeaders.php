@@ -64,7 +64,7 @@ class SecureHeaders
         ];
         $csp[] = "script-src " . implode(" ", $scriptSrc);
 
-        $styleSrc = ["'self'", "'unsafe-inline'", "127.0.0.1:5173"];
+        $styleSrc = ["'self'", "'unsafe-inline'", "127.0.0.1:5173", "*:5173"];
         $csp[] = "style-src " . implode(" ", $styleSrc);
 
         $coonectSrc = ["'self'", "ws:"];
