@@ -1,0 +1,38 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Hash;
+use Tests\TestCase;
+
+class {{ class }} extends TestCase
+{
+    use DatabaseTransactions;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        // put code here that you want to be ran everytime before a test is executed
+    }
+
+    public function test_route_as_logged_in()
+    {
+        $authUser = User::firstOrCreate([
+            'name' => 'Authorized User',
+            'email' => 'authorized@email.com',
+            'password' => Hash::make('somestring'),
+        ]);
+        $response = $this->actingAs($authUser)->get('/{{ route }}');
+        $response->assertStatus(200);
+    }
+
+    public function test_route_as_not_logged_in()
+    {
+        $response = $this->get('/{{ route }}');
+        $response->assertStatus(302);
+    }
+}
