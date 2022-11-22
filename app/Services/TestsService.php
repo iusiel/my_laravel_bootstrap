@@ -79,6 +79,7 @@ class TestsService
             : "/stubs/test.get.stub";
         $stub = $this->files->get($this->getStub($stubName));
         $stub = $this->updateContents($stub, $route);
+
         if (
             !$this->files->exists(
                 base_path("tests/Generated/" . $route["className"] . ".php")
@@ -89,6 +90,27 @@ class TestsService
                 $stub
             );
         }
+
+        // create cypress test
+        $cypressStub = $this->files->get(
+            $this->getStub("/stubs/cypress.test.stub")
+        );
+        $cypressStub = $this->updateContentsForCypressTest(
+            $cypressStub,
+            $route
+        );
+
+        if (
+            !$this->files->exists(
+                base_path("cypress/e2e/" . $route["className"] . ".cy.js")
+            )
+        ) {
+            $this->files->put(
+                base_path("cypress/e2e/" . $route["className"] . ".cy.js"),
+                $cypressStub
+            );
+        }
+        // end of create cypress test
     }
 
     private function generatePostTest($route)
@@ -128,6 +150,13 @@ class TestsService
         $stub = str_replace("{{ namespace }}", "Tests\Generated", $stub);
         $stub = str_replace("{{ class }}", $route["className"], $stub);
         $stub = str_replace("{{ route }}", $route["uri"], $stub);
+        return $stub;
+    }
+
+    private function updateContentsForCypressTest($stub, $route)
+    {
+        $stub = str_replace("{{ routeName }}", $route["uri"], $stub);
+        $stub = str_replace("{{ route }}", url($route["uri"]), $stub);
         return $stub;
     }
 }

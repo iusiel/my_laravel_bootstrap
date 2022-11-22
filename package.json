@@ -3,7 +3,11 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "prettier": "prettier --write ."
+        "prettier": "prettier --write .",
+        "vitest": "vitest",
+        "vitest:coverage": "vitest run --coverage",
+        "cy:open": "cypress open",
+        "cy:run": "cypress run"
     },
     "devDependencies": {
         "@prettier/plugin-php": "^0.18.7",
