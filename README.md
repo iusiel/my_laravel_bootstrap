@@ -24,3 +24,4 @@ yarn install
 1. npx cypress open - open cypress testing tool
 1. php artisan make:test-for-routes - generate tests for declared routes
 1. php artisan test - run all phpunit tests
+1. php scripts/create-vitest-tests.php - create tests for vue components. To be used in conjuction with vitest
