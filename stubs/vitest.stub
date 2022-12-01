@@ -1,9 +1,8 @@
-describe("basic spec", () => {
-    it("page loads", () => {
-        cy.visit("/");
-    });
+import { render, fireEvent } from "@testing-library/vue";
+import {{ ComponentName }} from "{{ ComponentPath }}";
 
-    it("text exists on page", () => {
-        cy.findByText("Some text that should be seen on the page.");
-    });
+test("it loads properly", async () => {
+    // The render method returns a collection of utilities to query your component.
+    const { getByText } = render({{ ComponentName }});
+    getByText("Some text present in your component");
 });
