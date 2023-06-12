@@ -7,6 +7,8 @@
 
 ## Setup
 
+1. Download from releases - https://github.com/iusiel/my_laravel_bootstrap
+1. Extract the contents of the archive.
 1. Run composer install and yarn install inside the project root.
 
 ```
