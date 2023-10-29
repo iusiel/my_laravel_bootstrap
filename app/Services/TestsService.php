@@ -33,11 +33,17 @@ class TestsService
 
     private function makeDirectory()
     {
+        // generate directory for phpunit tests
         $path = base_path("tests/Generated");
         if (!$this->files->isDirectory($path)) {
             $this->files->makeDirectory($path, 0777, true, true);
         }
 
+        // generate directory for cypress tests
+        $path = base_path("cypress/e2e");
+        if (!$this->files->isDirectory($path)) {
+            $this->files->makeDirectory($path, 0777, true, true);
+        }
         return $path;
     }
 
